@@ -1,0 +1,288 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div id="monthLoadingOverlay" class="col-md-4">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div id="monthLabel" class="ibox-title">Monthly Summary (November)</div>
+                    <div>
+                        <a id="btnPrev" class="btn btn-info btn-sm" href="javascript:;"><i class="fa fa-chevron-left"></i></a>
+                        <a id="btnNext" class="btn btn-info btn-sm" href="javascript:;"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="ibox-body" style="background: #dedede; height: 400px;">
+                    <div class="row mt-3" style="margin-top: 0!important;">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="ibox widget-stat">
+                                <div class="ibox-body">
+                                    <h2 class="m-b-20 font-strong">New Users</h2>
+                                    <div id="spnewuserscount" class="text-center m-b-10 sfont-strong">1,210</div>
+                                    <div class="fs"><i class="text-success fa fa-caret-up m-r-5"></i><small><span id="spnewuserspercent" class="text-success">4%</span> from prior month.</small></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="ibox widget-stat">
+                                <div class="ibox-body">
+                                    <h2 class="m-b-20 font-strong">Transactions</h2>
+                                    <div id="spnewtranscount" class="text-center m-b-10 sfont-strong">321,515</div>
+                                    <div class="fs"><i class="text-success fa fa-caret-up m-r-5"></i><small><span id="spnewtranspercent" class="text-success">2%</span> from prior month.</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" style="margin-top: 0!important;">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="ibox widget-stat">
+                                <div class="ibox-body">
+                                    <h2 class="m-b-20 font-strong">Revenue</h2>
+                                    <div id="spnewrevenuescount" class="text-center m-b-10 sfont-strong">210 M</div>
+                                    <div class="fs"><i class="text-success fa fa-caret-up m-r-5"></i><small><span id="spnewrevenuespercent" class="text-success">3%</span> from prior month.</small></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="ibox widget-stat">
+                                <div class="ibox-body">
+                                    <h2 class="m-b-20 font-strong">Occupancy</h2>
+                                    <div id="spnewoccucount" class="text-center m-b-10 sfont-strong">90%</div>
+                                    <div class="fs"><i class="text-success fa fa-caret-up m-r-5"></i><small><span id="spnewoccupercent" class="text-success">2%</span> from prior month.</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Parking Lot Summary</div>
+                </div>
+                <div class="ibox-body">
+                    <div id="parkingLotSummaryChart" class="chart--container"></div>
+                </div>
+            </div>
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Fines</div>
+                    <div class="ibox-body">
+                        <span class="badge badge-primary" id="spfinescount" style="font-size: 15px;">100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div id="durationTrendOverlay" class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Daily Parking Duration Trend</div>
+                    <label class='toggle-label'>
+                        <input type='checkbox' />
+                        <span class='back'>
+                            <span class='toggle'></span>
+                            <span id="BtnDurationYesterday" class='label on'>YESTERDAY</span>
+                            <span id="BtnDurationToday" class='label off'>TODAY</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ibox-body">
+                    <div id="durationTrendChart" class="chart--container"></div>
+                </div>
+            </div>
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Settlements</div>
+                    <div class="ibox-body">
+                        <span id="spsettlementscount" class="badge badge-primary" style="font-size: 15px;">90</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+            <div class="ibox" id="occuOverlay">
+                <div class="ibox-head">
+                    <div class="ibox-title">Parking Occupancy Percentage</div>
+                    <label class='toggle-label'>
+                        <input type='checkbox' />
+                        <span class='back'>
+                            <span class='toggle'></span>
+                            <span id="BtnOccuYesterday" class='label on'>YESTERDAY</span>
+                            <span id="BtnOccuToday" class='label off'>TODAY</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ibox-body">
+                    <div id="occuPercentageChart" class="chart--container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox" id="occuTrendOverlay">
+                <div class="ibox-head">
+                    <div class="ibox-title">Daily Occupancy Trend</div>
+                    <label class='toggle-label'>
+                        <input type='checkbox' />
+                        <span class='back'>
+                            <span class='toggle'></span>
+                            <span id="BtnOccuTrendYesterday" class='label on'>YESTERDAY</span>
+                            <span id="BtnOccuTrendToday" class='label off'>TODAY</span>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="ibox-body">
+                    <div id="occuTrendChart" class="chart--container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Customer Review Summary</div>
+
+                </div>
+                <div class="ibox-body">
+                    <div id="customerReviewsSummaryChart" class="chart--container"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- test -->
+    <div class="container">
+
+
+
+    </div>
+    <style type="text/css">
+
+
+
+        .toggle-label {
+            position: relative;
+            display: block;
+            width: 175px;
+            height: 25px;
+            margin-top: 8px;
+            border: 1px solid #808080;
+            /*margin: 200px auto;*/
+        }
+
+            .toggle-label input[type=checkbox] {
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+                .toggle-label input[type=checkbox] + .back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: #3d87d4;
+                    transition: background 150ms linear;
+                }
+
+                .toggle-label input[type=checkbox]:checked + .back {
+                    background: #00a651; /*green*/
+                }
+
+                .toggle-label input[type=checkbox] + .back .toggle {
+                    display: block;
+                    position: absolute;
+                    content: ' ';
+                    background: #fff;
+                    width: 50%;
+                    height: 100%;
+                    transition: margin 150ms linear;
+                    border: 1px solid #808080;
+                    border-radius: 0;
+                }
+
+                .toggle-label input[type=checkbox]:checked + .back .toggle {
+                    margin-left: 81px;
+                }
+
+            .toggle-label .label {
+                display: block;
+                position: absolute;
+                width: 50%;
+                color: #ddd;
+                line-height: 17px;
+                text-align: center;
+                font-size: 10px;
+            }
+
+                .toggle-label .label.on {
+                    left: 0px;
+                }
+
+                .toggle-label .label.off {
+                    right: 0px;
+                }
+
+            .toggle-label input[type=checkbox]:checked + .back .label.on {
+                color: #fff;
+            }
+
+            .toggle-label input[type=checkbox] + .back .label.off {
+                color: #fff;
+            }
+
+            .toggle-label input[type=checkbox]:checked + .back .label.off {
+                color: #ddd;
+            }
+    </style>
+    <!--  endtest -->
+
+</div>
+<!-- END PAGE CONTENT-->
+
+@section Scripts {
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/js/chart.js/Chart.min.js"></script>
+    <script src="~/js/chart.js/zingchart.min.js"></script>
+    <script src="~/js/spAPI.js" asp-append-version="true"></script>
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            dashboard.initMonthButton($('#btnPrev'), $('#btnNext'), $('#monthLabel'), $('#monthLoadingOverlay'));
+
+            dashboard.initNewUsers($('#spnewuserscount'), $('#spnewuserspercent'));
+            dashboard.initNewTrans($('#spnewtranscount'), $('#spnewtranspercent'));
+            dashboard.initNewRevenues($('#spnewrevenuescount'), $('#spnewrevenuespercent'));
+            dashboard.initNewOccu($('#spnewoccucount'), $('#spnewoccupercent'));
+            dashboard.initFineAndSettlement($('#spfinescount'), $('#spsettlementscount'));
+
+            dashboard.initLotSummary('parkingLotSummaryChart');
+            dashboard.initCustomerReviews('customerReviewsSummaryChart');
+
+            dashboard.initDurationTrend('durationTrendChart', $('#BtnDurationToday'), $('#BtnDurationYesterday'), $('#durationTrendOverlay'));
+            dashboard.initOccuPercentage('occuPercentageChart', $('#BtnOccuToday'), $('#BtnOccuYesterday'), $('#occuOverlay'));
+            dashboard.initOccuTrend('occuTrendChart', $('#BtnOccuTrendToday'), $('#BtnOccuTrendYesterday'), $('#occuTrendOverlay'));
+
+            dashboard.LoadAll();
+        });
+    </script>
+}    
+
+
+

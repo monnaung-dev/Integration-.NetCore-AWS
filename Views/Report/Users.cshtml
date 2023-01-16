@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="./assets/vendors/DataTables/datatables.css" rel="stylesheet" />
+<link href="./assets/vendors/DataTables/datatables.min.css" rel="stylesheet" />
+<link href="./assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
+<link href="./assets/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+<link href="./assets/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+<link href="./assets/vendors/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" />
+
+<div class="page-content fade-in-up">
+    <div class="ibox">
+        <div class="ibox-head">
+            <div class="ibox-title">Parking Info</div>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Plate Number</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="form-control-label">Zone</label>
+                        <select class="form-control select2_demo_1" multiple="">
+                            <option value="">Zone1</option>
+                            <option value="">Zone2</option>
+                            <option value="">Zone3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group" id="date_1">
+                        <label class="font-normal">From Date</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon bg-white"><i class="fa fa-calendar"></i></span>
+                            <input class="form-control" type="text" value="04/12/2017">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group" id="date_1">
+                        <label class="font-normal">To Date</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon bg-white"><i class="fa fa-calendar"></i></span>
+                            <input class="form-control" type="text" value="04/12/2017">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Duration</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Violant Type</label>
+                        <select class="form-control input-sm">
+                            <option>Choose Type</option>
+                            <option>Type1</option>
+                            <option>Type2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-bordered table-hover" id="example" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Plate Number</th>
+                        <th>Zone</th>
+                        <th>In Time</th>
+                        <th>Out Time</th>
+                        <th>Duration</th>
+                        <th>Violation Type</th>
+                        <th>Fine Amt</th>
+                        <th>Paid</th>
+                        <th>Payment Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>12332</td>
+                        <td>Zone 2</td>
+                        <td>11:00:30</td>
+                        <td>13:00:45</td>
+                        <td>2 hrs</td>
+                        <td>Violation</td>
+                        <td>500</td>
+                        <td>1000</td>
+                        <td>13/03/2020</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12345</td>
+                        <td>Zone 3</td>
+                        <td>9:00:30</td>
+                        <td>13:00:45</td>
+                        <td>4 hrs</td>
+                        <td>Violation</td>
+                        <td>500</td>
+                        <td>2000</td>
+                        <td>13/03/2020</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12343</td>
+                        <td>Zone 2</td>
+                        <td>11:00:30</td>
+                        <td>13:00:45</td>
+                        <td>2 hrs</td>
+                        <td>Violation</td>
+                        <td>500</td>
+                        <td>1000</td>
+                        <td>13/03/2020</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>14522</td>
+                        <td>Zone 2</td>
+                        <td>11:00:30</td>
+                        <td>12:00:45</td>
+                        <td>1 hr</td>
+                        <td>Violation</td>
+                        <td>500</td>
+                        <td>1000</td>
+                        <td>13/03/2020</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12752</td>
+                        <td>Zone 1</td>
+                        <td>10:00:30</td>
+                        <td>13:00:45</td>
+                        <td>3 hrs</td>
+                        <td>Violation</td>
+                        <td>500</td>
+                        <td>1000</td>
+                        <td>13/03/2020</td>
+                    </tr>
+
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <!-- END PAGE CONTENT-->
+
+    @section Scripts {
+        <script src="~/js/loadingoverlay.min.js"></script>
+        <script src="~/js/chart.js/Chart.min.js"></script>
+        <script src="~/js/chart.js/zingchart.min.js"></script>
+        <script src="~/js/spAPI.js" asp-append-version="true"></script>
+        <script src="~/js/dashboard.js" asp-append-version="true"></script>
+
+        <script>
+
+            $(document).ready(function () {
+
+            });
+        </script>
+    }
+
+
+

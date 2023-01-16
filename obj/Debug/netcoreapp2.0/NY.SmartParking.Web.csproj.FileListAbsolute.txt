@@ -1,0 +1,24 @@
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.deps.json
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.runtimeconfig.json
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.runtimeconfig.dev.json
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.dll
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.pdb
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.csprojAssemblyReference.cache
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.csproj.CoreCompileInputs.cache
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.AssemblyInfoInputs.cache
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.AssemblyInfo.cs
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.dll
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.pdb
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.deps.json
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.runtimeconfig.json
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.runtimeconfig.dev.json
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.dll
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\bin\Debug\netcoreapp2.0\NY.SmartParking.Web.pdb
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.csprojAssemblyReference.cache
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.csproj.CoreCompileInputs.cache
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.AssemblyInfoInputs.cache
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.AssemblyInfo.cs
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.dll
+D:\YGNSmartParking\SPDashboard\src\trunk\NY.SmartParking.Web\obj\Debug\netcoreapp2.0\NY.SmartParking.Web.pdb

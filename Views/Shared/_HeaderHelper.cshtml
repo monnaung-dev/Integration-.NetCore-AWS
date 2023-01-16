@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>Smart Parking | Dashboard</title>
+    <!-- GLOBAL MAINLY STYLES-->
+    <link href="~/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <!-- PLUGINS STYLES-->
+    <link href="~/assets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <!-- THEME STYLES-->
+    <link href="~/assets/css/main.min.css" rel="stylesheet" />
+    <!-- PAGE LEVEL STYLES-->
+
+    <style type="text/css">
+        .page-sidebar {
+            background-color: #253544;
+            position: fixed;
+        }
+
+        .header {
+            background-color: #3498db;
+        }
+
+            .header .page-brand {
+                color: rgb(255, 255, 255);
+                background-color: rgb(33, 125, 187);
+            }
+
+            .header .navbar-toolbar > li > a, .header .navbar-toolbar > li > a:hover, .header .navbar-toolbar > li > a:focus {
+                color: rgb(255, 255, 255);
+            }
+
+        .page-sidebar {
+            background-color: #ffffff;
+        }
+
+        .side-menu > li a {
+            color: #000000;
+        }
+
+        .side-menu > li.active {
+            background-color: #dedede;
+        }
+    </style>
+</head>
+
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <header class="header">
+            <div class="page-brand">
+                <a class="link" href="index.html">
+                    <span class="brand">
+                        <img src="~/assets/img/logos/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width: 30%; max-height: none;">
+                        <span class="brand-tip mt-3">Smart Parking</span>
+                    </span>
+                    <span class="brand-mini"> <img src="~/assets/img/logos/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"></span>
+                </a>
+            </div>
+            <div class="flexbox flex-1">
+                <!-- START TOP-LEFT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                    <li>
+                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+                    </li>
+                    <!--  <li>
+
+                             <div class="rel">
+                                 <span class="nav-label text-white" style="font-size: 20px;">Smart Parking System</span>
+                             </div>
+
+                     </li> -->
+                </ul>
+                <ul class="nav navbar-toolbar">
+                    <span class="nav-label text-white" style="font-size: 20px; text-shadow: 1px 1px #ccc;">Smart Parking System</span>
+                </ul>
+                <!-- END TOP-LEFT TOOLBAR-->
+                <!-- START TOP-RIGHT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+
+                    <li class="dropdown dropdown-user">
+                        <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+                            <img src="~/assets/img/admin-avatar.png" />
+                            <span></span>Admin<i class="fa fa-angle-down m-l-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="/Account/Index"><i class="fa fa-power-off"></i>Logout</a>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- END TOP-RIGHT TOOLBAR-->
+            </div>
+        </header>
+        <!-- END HEADER-->
+        <!-- START SIDEBAR-->
+        <nav class="page-sidebar" id="sidebar">
+            <div id="sidebar-collapse">
+
+                <ul class="side-menu metismenu mt-3">
+
+                    <li>
+                        <a href="/Home/Index">
+                            <i class="sidebar-item-icon fa fa-home"></i>
+                            <span class="nav-label">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Monitoring/Index">
+                            <i class="sidebar-item-icon fa fa-calendar"></i>
+                            <span class="nav-label">Monitoring</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon fa fa-pie-chart"></i>
+                            <span class="nav-label">Report</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="/Report/ParkingInfo"><i class="sidebar-item-icon fa fa-arrow-circle-o-right"></i>Parking Slots Info</a>
+                            </li>
+                            <li>
+                                <a href="/Report/ParkingHistory"><i class="sidebar-item-icon fa fa-arrow-circle-o-right"></i>Parking History</a>
+                            </li>
+                            <li>
+                                <a href="/Report/Violation"><i class="sidebar-item-icon fa fa-arrow-circle-o-right"></i>Parking Violation</a>
+                            </li>
+
+                            <li>
+                                <a href="/Report/ParkingUsers"><i class="sidebar-item-icon fa fa-arrow-circle-o-right"></i>Parking Users</a>
+                            </li>
+
+                            <li>
+                                <a href="/Report/RegisteredVehicles"><i class="sidebar-item-icon fa fa-arrow-circle-o-right"></i>Registered Vehicles</a>
+                            </li>
+
+                            <li>
+                                <a href="/Report/Users"><i class="sidebar-item-icon fa fa-arrow-circle-o-right"></i>Users</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- END SIDEBAR-->
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,528 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+    .count {
+        padding-top: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,.175) !important;
+    }
+
+    .badge-success {
+        background-color: #1900f9;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: #1900f9;
+    }
+
+    .dataTables_filter {
+        float: right;
+    }
+
+    .dataTables_paginate {
+        float: right;
+    }
+</style>
+<!-- START PAGE CONTENT-->
+<div class="page-content fade-in-up">
+
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="@Url.Action("Index","Monitoring")">Zone1(40th Street)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Zone2")">Zone2(39th Street)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Zone3")">Zone3(SeikKanThar Street)</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="ibox-body" style="padding-top: 5px;">
+            <div class="row text-center m-b-20">
+                <div class="col-2"></div>
+                <div class="col-2">
+                    <div class="count">
+                        <div class="font-24 profile-stat-count">
+                            <span id="occupiedId" class="badge badge-success">0</span>
+                        </div>
+                        <div class="mt-2" style="font-size: 15px;">Occupied</div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="count">
+                        <div class="font-24 profile-stat-count">
+                            <span id="vacantId" class="badge badge-success">0</span>
+                        </div>
+                        <div class="mt-2" style="font-size: 15px;">Vacant</div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="count">
+                        <div class="font-24 profile-stat-count">
+                            <span id="vinLaneId" class="badge badge-success">0</span>
+                        </div>
+                        <div class="mt-2" style="font-size: 15px;">Vehicle In Lane</div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="count">
+                        <div class="font-24 profile-stat-count">
+                            <span id="slotList" class="badge badge-success">0</span>
+                        </div>
+                        <div class="mt-2" style="font-size: 15px;">Total Lots</div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-reconnect">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Reconnect CameraCount</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="" id="camCountInZone" placeholder="Enter Camera Count">
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-primary" onclick="camera_reconnect()">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+
+                <div class="modal fade" id="modal-zone1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add FreeSlots Form</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="" id="freeSlotId" placeholder="Enter FreeSlot Number">
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-primary" onclick="Save()">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <div class="modal fade" id="modal-time">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Time Form</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="" id="graceTimeId" placeholder="Enter Grace Time (mins)">
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="" id="maxTimeId" placeholder="Enter Max Time (mins)">
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-primary" onclick="SaveTime()">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+            <div class="modal fade" id="modal-parkingavailability">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add FreeSlots Form</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="" id="zoneId" placeholder="Enter Zone Id" pattern="[0-2]">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="" id="freecount" placeholder="Enter Free Slot">
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-primary" onclick="SendAvailability()">Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+            <div class="row text-center m-b-20">
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-zone1" style="float: right;">
+                        AddFreeSlots
+                    </button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-time" style="float: right;">
+                        AddTime
+                    </button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="zoneStatus()" style="float: right;">
+                        Status
+                    </button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-reconnect" style="float: right;">
+                        Reconnect
+                    </button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-parkingavailability" style="float: right;">
+                        SendParkingAvailability
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 0;">
+
+            <div class="ibox">
+
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item" id="v">
+                            <a class="nav-link active"  href="#tab-7-1" data-toggle="tab"><i class="fa fa-car" style="color: #1900f9;"></i>&nbsp; VehicleApproaching</a>
+                        </li>
+                        <li class="nav-item" id="p">
+                            <a class="nav-link"  href="#tab-7-2" data-toggle="tab"><i class="fa fa-car" style="color: #1900f9;"></i>&nbsp; Parking</a>
+                        </li>
+                        <li class="nav-item" id="vleaving">
+                            <a class="nav-link"  href="#tab-7-3" data-toggle="tab"><i class="fa fa-car" style="color: #1900f9;"></i>&nbsp; Vehile Leaving</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="tab-7-1">
+
+                            <table class="table table-striped table-bordered table-hover" id="vehicle" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Plate Number</th>
+                                        <th>SnapShot</th>
+                                    </tr>
+                                </thead>
+                                
+                            </table>
+
+                        </div>
+                        <div class="tab-pane" id="tab-7-2">
+
+                            <table class="table table-striped table-bordered table-hover" id="parking" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Entry Time</th>
+                                        <th>Plate Number</th>
+                                        <th>InSnapShot</th>
+                                    </tr>
+                                </thead>
+                                
+                            </table>
+
+
+                        </div>
+                        <div class="tab-pane" id="tab-7-3">
+
+                            <table class="table table-striped table-bordered table-hover" id="leaving" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Entry Time</th>
+                                        <th>Plate Number</th>
+                                        <th>Exit Time</th>
+                                        <th>InSnapShot</th>
+                                        <th>OutSnapShot</th>
+                                    </tr>
+                                </thead>
+                                
+                            </table>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- END PAGE CONTENT-->
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            MQTTconnect();
+        });
+        $('li#v').click(function () {
+            console.log("vehicle");
+            Vehicleapproach();
+            $("#tab-7-1").show();
+            $("#tab-7-2").hide();
+            $("#tab-7-3").hide();
+            
+
+        });
+        $('li#p').click(function () {
+            console.log("parking");
+            Parking();
+            $("#tab-7-1").hide();
+            $("#tab-7-2").show();
+            $("#tab-7-3").hide();
+        });
+        $('li#vleaving').click(function () {
+            console.log("vehicleleaving");
+            Leaving();
+            $("#tab-7-1").hide();
+            $("#tab-7-2").hide();
+            $("#tab-7-3").show();
+        });
+
+    </script>
+}
+<script>
+    var mqtt;
+    var reconnectTimeout = 2000;
+    var host = "stellar-carpenter.cloudmqtt.com";
+    var port = 443;
+    var occupied;
+    var vacant;
+    var vehicleinLine;
+    var totalSlots;
+    var vinLine;
+
+    function MQTTconnect() {
+        mqtt = new Paho.MQTT.Client(host, port, "clientId");
+        console.log("Connecting to" + host + ":" + port);
+        var options = {
+            useSSL: true,
+            userName: "ukupubcf",
+            password: "BEwuo9N5FUfi",
+            timeout: 3,
+            onSuccess: onConnect,
+            onFailure: onFailure,
+        };
+        mqtt.connect(options);
+    }
+    function onConnect() {
+        console.log("connected");
+        Availability();
+        VehicleInLane();
+        Vehicleapproach();
+        //message = new Paho.MQTT.Message("Connected");
+        //message.destinationName = "vehicle_likely_to_park/1";
+        //mqtt.send(message);
+    }
+    function onFailure(message) {
+        console.log("Connection " + port + "failed!");
+        setTimeout(MQTTconnect, reconnectTimeout);
+    }
+    function onMessageArrived(message) {
+        console.log(message);
+        if (message.destinationName == "vehicle_approaching/1") {
+            approach = message.payloadString;
+            var  zoneParkList = JSON.parse("[" + approach + "]");
+            console.log("approach" + approach);
+            InitializeVehicleApproachDatatable(zoneParkList);           
+        }
+        if (message.destinationName == "vehicle_likely_to_park/1") {
+            parking = message.payloadString;
+            var parkingInZone = JSON.parse(parking);
+            console.log("parking" + parkingInZone);
+            InitializeVehicleParkingDatatable(parkingInZone);
+        }
+        if (message.destinationName == "vehicle_leaving/1") {
+            leaving = message.payloadString;
+            var leavingInZone = JSON.parse("[" + leaving + "]");
+            console.log("leaving");
+            console.log(leavingInZone);
+            InitializeVehicleLeavingDatatable(leavingInZone);
+        }
+        if (message.destinationName == "parking_availability/1") {
+            availability = message.payloadString;
+            var availabilityInZone = JSON.parse(availability);
+            occupied = availabilityInZone.occupied;
+            vacant = availabilityInZone.freeSlots;
+            totalSlots = availabilityInZone.slots;
+            $("#occupiedId").html(occupied);
+            $("#vacantId").html(vacant);
+            $("#slotList").html(totalSlots);
+            console.log("availability" + availabilityInZone);
+        }
+        if (message.destinationName == "vehicles_in_lane/1") {
+            vehicleInLane = message.payloadString;
+            var vehicle = JSON.parse(vehicleInLane);
+            vinLine = vehicle.count;
+            $("#vinLaneId").html(vinLine);
+        }
+
+        //var list = Object.keys(zoneParkList).length;
+    }
+    function InitializeVehicleApproachDatatable(data) {
+        $("#vehicle").DataTable({
+            "ordering": false,
+            data: data,
+            destroy: true,
+            dataSrc: "",
+            "columns": [
+                { "data": "Time" },
+                { "data": "PlateNumber" },
+                { "data": "SnapShot", render: getImg }
+            ]
+        });
+    }
+    function InitializeVehicleParkingDatatable(data) {
+        $("#parking").DataTable({           
+            "ordering": false,
+            data: data,
+            destroy: true,
+            dataSrc: "",
+            "columns": [
+                { "data": "InTime" },
+                { "data": "PlateNumber" },
+                { "data": "InSnapShot", render: getImg }
+            ]
+        });
+    }
+    function InitializeVehicleLeavingDatatable(data) {
+        $("#leaving").DataTable({
+            "ordering": false,
+            data: data,
+            destroy: true,
+            dataSrc: "",
+            "columns": [
+                { "data": "InTime" },
+                { "data": "PlateNumber" },
+                { "data": "OutTime" },
+                { "data": "InSnapShot", render: getImg },
+                { "data": "OutSnapShot", render: getImg }
+            ]
+        });
+    }
+
+    function getImg(data, type, full, meta) {
+        var snap = data;
+        return '<img src="data:image/png;base64,' + snap + '" style="width:50px; height:50px;"/>';
+    }
+    function Vehicleapproach() {
+        mqtt.subscribe("vehicle_approaching/1");
+        mqtt.onMessageArrived = onMessageArrived
+    }
+    function Parking() {
+        mqtt.subscribe("vehicle_likely_to_park/1");
+        mqtt.onMessageArrived = onMessageArrived
+    }
+    function Leaving() {
+        mqtt.subscribe("vehicle_leaving/1");
+        mqtt.onMessageArrived = onMessageArrived
+    }
+    function Availability() {
+        mqtt.subscribe("parking_availability/1");
+        mqtt.onMessageArrived = onMessageArrived
+    }
+    function VehicleInLane() {
+        mqtt.subscribe("vehicles_in_lane/1");
+        mqtt.onMessageArrived = onMessageArrived
+    }
+    function Save() {
+        var freeSlots = $("#freeSlotId").val();
+        var mqttMsg = "{ \"parkingID\":" + 1 +
+            " , \"freeSlots\":" + freeSlots + " }";
+        mqtt.send("freeSlots_in_lane/1", mqttMsg);
+    }  
+    function SaveTime() {
+        var graceTime = $("#graceTimeId").val();
+        var maxTime = $("#maxTimeId").val();
+        var mqttMsg = "{ \"parkingID\":" + 1 +
+            " , \"graceTime\":" + graceTime + ",\"maxTime\":" + maxTime + " }";
+        mqtt.send("graceAndmaxTime_in_lane/1", mqttMsg);
+        console.log("GraceAndMaxTime" + mqttMsg);
+    } 
+    function camera_reconnect() {
+        var reg = new RegExp("[0-2]");
+        var mqttMsg;
+        var camCountInZone = $("#camCountInZone").val();
+        if (reg.test(camCountInZone)) {
+            mqttMsg = "{ \"parkingID\":" + 1 +
+                " , \"camID\":" + camCountInZone +" }";
+            mqtt.send("camera_reconnect/1", mqttMsg);
+        }
+        else {
+            console.log("Please fill correct number(0 or 1 or 2)");
+        }
+        
+    } 
+    function zoneStatus() {
+        var mqttMsg = "{ \"parkingID\":" + 1 +" }";
+        mqtt.send("zone_status/1", mqttMsg);
+        console.log("zoneStatus" + mqttMsg);
+    }
+    function SendAvailability() {
+        var reg = new RegExp('[0-2]');
+        var totalslot;
+        var freeCount = $("#freecount").val();
+        var zoneId = $("#zoneId").val();
+        if (reg.test(zoneId)) {
+            if (zoneId == 1) {
+                totalslot = 72;
+            } else if (zoneId == 2) {
+                totalslot = 66;
+            } else if (zoneId == 3) {
+                totalslot = 126;
+            }
+            var occupied = totalslot - freeCount;
+            var mqttMsg = "{ \"parkingID\":" + zoneId +
+                " , \"slots\":" + totalslot +
+                " , \"occupied\":" + occupied +
+                " , \"freeSlots\":" + freeCount + " }";
+            mqtt.send("parking_availability/" + zoneId + "", mqttMsg);
+            console.log("parking_availability/" + zoneId + "", mqttMsg);
+        } else {
+            console.log("Please Fill Correct ZoneId");
+        }
+        
+    }
+</script>

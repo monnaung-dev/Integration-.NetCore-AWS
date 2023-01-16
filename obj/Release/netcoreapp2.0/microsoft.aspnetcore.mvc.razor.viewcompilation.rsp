@@ -1,0 +1,25 @@
+D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=NY.SmartParking.Web
+--content-root=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Account\ChangePassword.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Account\Login.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Home\Index.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Monitoring\Index.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\ParkingAttendant\Index.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Report\ParkingHistory.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Report\ParkingInfo.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Report\ParkingUsers.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Report\RegisteredVehicles.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Report\Users.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Report\Violation.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Shared\Error.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Shared\_CookieConsentPartial.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Shared\_FooterHelper.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Shared\_HeaderHelper.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Shared\_Layout.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Zone2\Index.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\Zone3\Index.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\_ViewImports.cshtml
+--file=D:\YGN Smart Parking\SPDashboard\src\trunk\NY.SmartParking.Web\Views\_ViewStart.cshtml

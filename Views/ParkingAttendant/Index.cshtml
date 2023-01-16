@@ -1,0 +1,277 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="./assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <title>Parking Attendant</title>
+</head>
+<body>
+    <div class="page-content fade-in-up">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-head">
+                        <div class="ibox-title">
+                            Parking Attendant
+                        </div>
+                    </div>
+                    <div class="ibox-body">
+
+                        <!-- uid=32db08c1-1def-46ed-8309-c7a2d82684d5 -->
+
+                        <form>
+                            <!--input id="parkingID" name="parkingID" type="hidden" value="02B010"-->
+                            <!-- Timestamp for date from-->
+                            <input id="dateFrom" name="dateFrom" type="hidden" value="">
+                            <input id="dateBook" name="dateBook" type="hidden" value="">
+                            <input id="userID" name="userID" type="hidden" value="">
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Location</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" onchange="prepareForm()" id="parkingID" required>
+                                        <option value="">-----Please Select Location-----</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Parking Hours</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" onchange="prepareForm()" id="hours" required>
+                                        <option id="0Hour" value="0">0</option>
+                                        <option id="1Hour" selected value="1">1</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" onchange="prepareForm()" id="minutes">
+                                        <option value="0">0</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Phone Number</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="tel" id="phone" name="phone" value="09" pattern="^[0-9]{9,11}$" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Number Plate</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" id="plateNumber" name="plateNumber" value="" pattern="[0-9A-Z]{2,3}-[0-9]{1,4}" required>
+                                    <small>Format: 1A-1234 (OR) AA-1234</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Slot Number</label>
+                                <div class="col-sm-10">
+                                    <!-- <input class="form-control" id="ex-phone" type="text"> -->
+                                    <input class="form-control" type="text" id="slotNumber" name="slotNumber" value="02"  pattern="02[0-9]{4}" required>
+                                    <small>Format: 020801</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Total Cost</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="price" name="price" disabled value="" type="text">
+                                    <small>Kyats</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div style="padding-left:225px"  class="col-4 ">
+                                    <button class="btn btn-primary" onclick="Save()">Save</button>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-danger" onclick="Cancel()">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p id="attendant"></p>
+                        <script>
+                            dateNow = new Date();
+                            currentHour = dateNow.getHours();
+                            hoursLeft = 18 - currentHour;
+                            var hourList = document.getElementById("hours");
+                            var option;
+                            var i = 0;
+                            for (i = 2; i < hoursLeft; i++) {
+                                option = document.createElement("option");
+                                option.text = i + "";
+                                option.value = i;
+                                hourList.add(option);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("form").on('submit', function (e) {
+                e.preventDefault();
+            });
+            getParkingByInfo();
+        });
+
+    </script>
+}
+<script>
+
+    var parking = {
+        "parkingID": "",
+        "time": "",
+        "phoneNumber": "",
+        "plateNumber": "",
+        "slotNumber": "",
+        "cost": "",
+        "dateBook": "",
+        "dateFrom":""
+    };
+    var price;
+    var phoneRegExp = new RegExp('^[0-9]{9,11}$');
+    var plateRegExp = new RegExp('[0-9A-Z]{2,3}-[0-9]{1,4}');
+    var slotRegExp = new RegExp('02[0-9]{4}');
+
+    function calculateCost() {
+    }
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    function prepareForm() {
+        //get selected location and determine rate
+        var parkingIDList = document.getElementById("parkingID");
+        var parkingID = parkingIDList.options[parkingIDList.selectedIndex].value;
+        var rateHr = 200;
+        var strUserID = getUrlParameter('uid');
+        document.getElementById("userID").value = strUserID;
+
+        if (rate500List.includes(parkingID)) {
+            rateHr = 500;
+        } else if (rate300List.includes(parkingID)) {
+            rateHr = 300;
+        }
+        //get timestamp
+        document.getElementById("dateFrom").value = Math.round((new Date()).getTime());
+        hr = document.getElementById("hours").value * 1;
+        min = document.getElementById("minutes").value * 1;
+        // rateHr = document.getElementById("rate").value*1;
+        if (min == 15) {
+            priceMin = rateHr / 4;
+        }
+        else if (min == 30) {
+            priceMin = rateHr / 2;
+        }
+        else if (min == 45) {
+            priceMin = rateHr / 4 + rateHr / 2;
+        }
+        else {
+            priceMin = 0;
+        }
+        unixSeconds = document.getElementById("dateFrom").value
+        bookSeconds = (unixSeconds * 1) + (hr * 3600) + (min * 60);
+        document.getElementById("dateBook").value = bookSeconds;
+        price = hr * rateHr + priceMin;
+        document.getElementById("price").value = price;
+    }
+
+    function ValidateField(parking) {
+        if (!plateRegExp.test(parking.plateNumber)) {
+            return false;
+        }
+        if (!slotRegExp.test(parking.slotNumber)) {
+            return false;
+        }
+        if (!phoneRegExp.test(parking.phoneNumber)) {            
+            return false;
+        } 
+        return true;
+    }
+    function Cancel() {
+        document.getElementById("parkingID").value = "";
+        document.getElementById("hours").value = "0";
+        document.getElementById("minutes").value = "";
+        document.getElementById("phone").value= "09";
+        document.getElementById("plateNumber").value ="";
+        document.getElementById("slotNumber").value="02";
+        document.getElementById("price").value="";
+        document.getElementById("dateBook").value="";
+        document.getElementById("dateFrom").value="";
+    }
+    function Save() {
+        parking.parkingID = $("#parkingID option:selected").val();
+        parking.time = $("#hours").val() + ":" + $("#minutes").val();
+        parking.phoneNumber = $("#phone").val();
+        parking.plateNumber = $("#plateNumber").val();
+        parking.slotNumber = $("#slotNumber").val();
+        parking.cost = $("#price").val();
+        parking.dateBook = $("#dateBook").val();
+        parking.dateFrom = $("#dateFrom").val();
+        console.log("dateFrom" + parking.dateFrom);
+        var res = ValidateField(parking);
+        if (res) {
+            $.ajax({
+                type: "post",
+                url: "/ParkingAttendant/Save",
+                dataType: "json",
+                data: parking
+            }).done(function (message) {
+                Cancel();
+                console.log(message);
+            }).fail(function () {
+                console.log("Error while Parking_Attendant save");
+            });
+        } else {
+            console.log("Please fill correct data");
+        }
+
+    }
+</script>
+<script>
+    var rate500List = [];
+    var rate300List = [];
+    var parkinglist = [];
+
+
+    function getParkingByInfo() {
+        $.ajax({
+            type: "get",
+            url: "/ParkingAttendant/GetAllParkingByInfo",
+            dataType: "json",
+            data: ""
+        }).done(function (res) {
+            parkinglist = res.data;
+            parkingTitleOption(parkinglist);
+            rate500List = res.rate500Lists;
+            rate300List = res.rate300Lists;
+            console.log(parkinglist);
+            console.log(rate500List);
+            console.log(rate300List);
+            console.log("Get ParkingInfo List");
+        }).fail(function () {
+            console.log("Error while get parkinginof list");
+        })
+    }
+
+    function parkingTitleOption(parkinglist) {
+        var count = parkinglist.length;
+        for (var i = 0; i < count; i++) {
+            $("#parkingID").append('<option value="' + parkinglist[i].parkingID + '">' + parkinglist[i].title + '</option>')
+        }
+    }
+
+</script>
